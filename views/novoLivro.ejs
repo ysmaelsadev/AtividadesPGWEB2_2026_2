@@ -1,0 +1,52 @@
+<%- include("partials/header") %>
+
+<article class="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
+  <aside class="lg:pt-8">
+    <a href="/livros" class="inline-flex items-center gap-2 text-sm font-semibold text-forest hover:text-ink"><span aria-hidden="true">←</span> Voltar à coleção</a>
+    <hgroup class="mt-10">
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-clay">Nova leitura</p>
+      <h1 class="mt-4 text-4xl font-semibold leading-tight tracking-[-0.035em] sm:text-5xl">Abra espaço para uma nova história.</h1>
+      <p class="mt-5 leading-7 text-ink/55">Adicione os dados essenciais. O livro entra automaticamente com o status “Lendo”.</p>
+    </hgroup>
+    <ol class="mt-10 space-y-5 border-t border-ink/10 pt-7 text-sm text-ink/55">
+      <li class="flex gap-4"><span class="font-semibold text-forest">01</span> Informe o título e o autor.</li>
+      <li class="flex gap-4"><span class="font-semibold text-forest">02</span> Registre o total de páginas.</li>
+      <li class="flex gap-4"><span class="font-semibold text-forest">03</span> Salve e acompanhe na sua coleção.</li>
+    </ol>
+  </aside>
+
+  <section class="rounded-[2rem] bg-white p-6 shadow-soft sm:p-10">
+    <% if (erro) { %>
+      <aside class="mb-7 rounded-xl border border-red-200 bg-red-50 p-4 text-sm font-medium text-red-800" role="alert"><%= erro %></aside>
+    <% } %>
+
+    <form action="/livros/novo" method="POST">
+      <fieldset class="space-y-7">
+        <legend class="mb-8 text-xl font-semibold tracking-tight">Dados do livro</legend>
+
+        <label class="block text-sm font-semibold text-ink/75">
+          Título do livro
+          <input type="text" name="titulo" value="<%= dados.titulo || '' %>" required maxlength="150" autocomplete="off" placeholder="Ex.: O Hobbit" class="mt-2.5 block w-full rounded-xl border border-ink/15 bg-canvas px-4 py-3.5 font-normal text-ink outline-none transition placeholder:text-ink/30 focus:border-forest focus:bg-white focus:ring-4 focus:ring-sage/60">
+        </label>
+
+        <label class="block text-sm font-semibold text-ink/75">
+          Autor
+          <input type="text" name="autor" value="<%= dados.autor || '' %>" required maxlength="120" autocomplete="off" placeholder="Ex.: J.R.R. Tolkien" class="mt-2.5 block w-full rounded-xl border border-ink/15 bg-canvas px-4 py-3.5 font-normal text-ink outline-none transition placeholder:text-ink/30 focus:border-forest focus:bg-white focus:ring-4 focus:ring-sage/60">
+        </label>
+
+        <label class="block text-sm font-semibold text-ink/75">
+          Quantidade de páginas
+          <input type="number" name="paginas" value="<%= dados.paginas || '' %>" min="1" step="1" required placeholder="Ex.: 310" class="mt-2.5 block w-full rounded-xl border border-ink/15 bg-canvas px-4 py-3.5 font-normal text-ink outline-none transition placeholder:text-ink/30 focus:border-forest focus:bg-white focus:ring-4 focus:ring-sage/60">
+        </label>
+      </fieldset>
+
+      <menu class="mt-10 flex flex-col-reverse gap-3 border-t border-ink/10 pt-7 sm:flex-row sm:justify-end">
+        <li><a href="/livros" class="block rounded-full px-5 py-3 text-center text-sm font-semibold text-ink/55 transition hover:bg-mist hover:text-ink">Cancelar</a></li>
+        <li><button type="submit" class="w-full rounded-full bg-forest px-6 py-3 text-sm font-semibold text-white transition hover:bg-ink sm:w-auto">Salvar na coleção</button></li>
+      </menu>
+    </form>
+  </section>
+</article>
+
+<%- include("partials/footer") %>
+
