@@ -1,7 +1,6 @@
 # Minha Estante
 
-Aplicação web para gerenciar leituras pessoais, desenvolvida com Node.js, Express,
-EJS, Tailwind CSS e arquitetura MVC. Os dados são persistidos em `livros.json`.
+Atividade 2
 
 ## Como executar
 
